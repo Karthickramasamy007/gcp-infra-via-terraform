@@ -11,7 +11,7 @@ pipeline {
               containers:
                 - name: terraform
                   image: hashicorp/terraform
-                  command: [ "terraform", "version" ]  // Test if Terraform is working
+                  command: [ "terraform", "version" ]  # Test if Terraform is working
                   tty: true
             """
         }
