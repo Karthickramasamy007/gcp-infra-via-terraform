@@ -11,6 +11,7 @@ pipeline {
               containers:
                 - name: terraform
                   image: hashicorp/terraform
+                  command: ["sleep", "3600"]
                   tty: true
             """
         }
