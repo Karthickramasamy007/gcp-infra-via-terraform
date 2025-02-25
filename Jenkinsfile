@@ -10,7 +10,7 @@ pipeline {
             spec:
               containers:
                 - name: terraform
-                  image: hashicorp/terraform
+                  image: hashicorp/terraform:1.9.5
                   command: [ "terraform", "version" ]  # Test if Terraform is working
                   tty: true
             """
