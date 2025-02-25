@@ -28,13 +28,11 @@ pipeline {
             }
         }
 
-        stage {
-            stage('Check Terraform Version') {
+        stage('Check Terraform Version') {
                 steps {
                     container('terraform') {
                     sh 'terraform --version' // Check Python version inside the container
                     }
-                }
             }
         }
 
