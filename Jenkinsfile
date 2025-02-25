@@ -34,24 +34,24 @@ pipeline {
                     sh 'terraform --version' // Check Python version inside the container
                     sh 'terraform init'
                     sh 'terraform plan' 
-                    sh 'terraform apply' 
+                    sh 'terraform apply -auto-approve' 
                     }
             }
         }
 
-        stage('Terraform Apply') {
-            steps {
-                script {
-                    withCredentials([file(credentialsId: 'allow-gcp-resource-create-and-manage', variable: 'GOOGLE_CREDENTIALS')]) {
-                        input message: 'Approve Terraform Apply?', ok: 'Apply'
-                        sh """
-                            export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_CREDENTIALS}
-                            terraform apply tfplan
-                        """
-                    }
-                }
-            }
-        }
+        // stage('Terraform Apply') {
+        //     steps {
+        //         script {
+        //             withCredentials([file(credentialsId: 'allow-gcp-resource-create-and-manage', variable: 'GOOGLE_CREDENTIALS')]) {
+        //                 input message: 'Approve Terraform Apply?', ok: 'Apply'
+        //                 sh """
+        //                     export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_CREDENTIALS}
+        //                     terraform apply tfplan
+        //                 """
+        //             }
+        //         }
+        //     }
+        // }
 
         stage('Clean Up') {
             steps {
