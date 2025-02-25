@@ -27,26 +27,26 @@ pipeline {
             }
         }
 
-        stage('Terraform Init') {
-            steps {
-                script {
+        // stage('Terraform Init') {
+        //     steps {
+        //         script {
                    
-                        sh """
-                            terraform init"
-                        """
-                }
-            }
-        }
+        //                 sh """
+        //                     terraform init"
+        //                 """
+        //         }
+        //     }
+        // }
 
-        stage('Terraform Plan') {
-            steps {
-                script {
-                        sh """
-                            terraform plan
-                        """
-                }
-            }
-        }
+        // stage('Terraform Plan') {
+        //     steps {
+        //         script {
+        //                 sh """
+        //                     terraform plan
+        //                 """
+        //         }
+        //     }
+        // }
 
         stage('Terraform Apply') {
             steps {
