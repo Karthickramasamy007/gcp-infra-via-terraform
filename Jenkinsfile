@@ -33,7 +33,7 @@ pipeline {
                 script {
                    
                         sh """
-                            terraform init"
+                            terraform init
                         """
                 }
             }
