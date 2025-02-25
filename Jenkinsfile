@@ -8,17 +8,14 @@ pipeline {
               labels:
                 app: jenkins-agent
             spec:
-            //   imagePullSecrets:
-            //   - name: gcr-json-key  // Use the secret for pulling images from Artifact Registry
-            //  containers:
-              - name: terraform
-                image: hashicorp/terraform
-                command: [ "terraform", "version" ]  // Test if Terraform is working
-                tty: true
+              containers:
+                - name: terraform
+                  image: hashicorp/terraform
+                  command: [ "terraform", "version" ]  // Test if Terraform is working
+                  tty: true
             """
         }
     }
-
     environment {
         GOOGLE_CREDENTIALS = credentials('allow-gcp-resource-create-and-manage')  // This assumes you have the credentials stored securely in Jenkins
         GOOGLE_PROJECT_ID = 'dev-demo-proj-1-id'
@@ -36,7 +33,7 @@ pipeline {
                 script {
                    
                         sh """
-                            terraform init
+                            terraform init"
                         """
                 }
             }
