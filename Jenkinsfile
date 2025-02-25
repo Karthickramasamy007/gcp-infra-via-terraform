@@ -5,14 +5,15 @@ pipeline {
             apiVersion: v1
             kind: Pod
             metadata:
-              labels:
+            labels:
                 app: jenkins-agent
             spec:
-              containers:
+            containers:
                 - name: terraform
-                  image: hashicorp/terraform
-                  command: ["sleep", "3600"]
-                  tty: true
+                image: hashicorp/terraform
+                command: [ "sh", "-c", "terraform version && sleep 3600" ]
+                tty: true
+
             """
         }
     }
