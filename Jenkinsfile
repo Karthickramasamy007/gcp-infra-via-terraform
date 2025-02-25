@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'hashicorp/terraform:latest'
+        }
+    }
 
     environment {
         // Define GCP credentials (make sure these are stored securely, e.g., in Jenkins credentials store)
