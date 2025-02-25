@@ -38,8 +38,8 @@ pipeline {
 
         stage('Check Terraform Version') {
             steps {
-                container('terraform') {
-                    sh 'terraform --version'  // Check Terraform version inside the container
+                container('terraform') { // This references container name in the K8s yaml above to run the below command in pod.
+                    sh 'terraform --version'
                     sh 'terraform init'
                     sh 'terraform plan' 
                     sh 'terraform apply -auto-approve' 
@@ -49,7 +49,7 @@ pipeline {
 
         stage('Clean Up') {
             steps {
-                script {
+                container('terraform')  {
                     sh 'terraform workspace select default || terraform workspace new default'
                     sh 'terraform destroy -auto-approve'
                 }
