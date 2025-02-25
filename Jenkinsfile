@@ -13,14 +13,6 @@ pipeline {
                 image: hashicorp/terraform:latest
                 command: [ "cat" ]
                 tty: true
-                volumeMounts:
-                  - name: gcp-credentials
-                    mountPath: /secrets/gcp
-                    readOnly: true
-              volumes:
-                - name: gcp-credentials
-                  secret:
-                    secretName: gcp-sa-secret  # Store service account in Kubernetes Secret
             """
         }
     }
