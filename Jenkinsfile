@@ -28,7 +28,7 @@ pipeline {
             }
         }
 
-        stages {
+        stage {
             stage('Check Terraform Version') {
                 steps {
                     container('terraform') {
