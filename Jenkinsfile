@@ -26,6 +26,7 @@ pipeline {
     }
 
 
+
     environment {
         GOOGLE_CREDENTIALS = credentials('allow-gcp-resource-create-and-manage')  // This assumes you have the credentials stored securely in Jenkins
         GOOGLE_PROJECT_ID = 'dev-demo-proj-1-id'
