@@ -1,7 +1,27 @@
 pipeline {
-    agent {
-        docker {
-            image 'hashicorp/terraform:latest'
+      agent {
+        kubernetes {
+            yaml """
+            apiVersion: v1
+            kind: Pod
+            metadata:
+              labels:
+                app: jenkins-agent
+            spec:
+              containers:
+              - name: terraform
+                image: hashicorp/terraform:latest
+                command: [ "cat" ]
+                tty: true
+                volumeMounts:
+                  - name: gcp-credentials
+                    mountPath: /secrets/gcp
+                    readOnly: true
+              volumes:
+                - name: gcp-credentials
+                  secret:
+                    secretName: gcp-sa-secret  # Store service account in Kubernetes Secret
+            """
         }
     }
 
