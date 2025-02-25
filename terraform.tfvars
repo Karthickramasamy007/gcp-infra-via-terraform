@@ -1,0 +1,10 @@
+project_id      = "dev-demo-proj-1-id"
+region          = "europe-west1"
+zone            = "europe-west1-a"
+vpc_name        = "my-vpc-by-terraform"
+subnet_name     = "my-subnet"
+subnet_cidr     = "10.0.0.0/24"
+vm_name         = "my-vm-by-terrafrom"
+machine_type    = "e2-medium"
+image            = "projects/debian-cloud/global/images/debian-12-bookworm-v20250212"
+vm_tags         = ["production", "web-server"]
