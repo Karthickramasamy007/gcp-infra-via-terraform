@@ -51,7 +51,7 @@ pipeline {
             steps {
                 container('terraform')  {
                     sh 'terraform workspace select default || terraform workspace new default'
-                    sh 'terraform destroy -auto-approve'
+                    //sh 'terraform destroy -auto-approve'
                 }
             }
         }
