@@ -8,11 +8,11 @@ pipeline {
               labels:
                 app: jenkins-agent
             spec:
-              imagePullSecrets:
-              - name: gcr-json-key  // Use the secret for pulling images from Artifact Registry
+            //   imagePullSecrets:
+            //   - name: gcr-json-key  // Use the secret for pulling images from Artifact Registry
               containers:
               - name: terraform
-                image: europe-west1-docker.pkg.dev/dev-demo-proj-1-id/my-artifact-repo/terraform:1.9.5
+                image: hashicorp/terraform
                 command: [ "cat" ]
                 tty: true
             """
