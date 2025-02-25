@@ -34,12 +34,10 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 script {
-                    withCredentials([file(credentialsId: 'allow-gcp-resource-create-and-manage', variable: 'GOOGLE_CREDENTIALS')]) {
+                   
                         sh """
-                            export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_CREDENTIALS}
                             terraform init"
                         """
-                    }
                 }
             }
         }
