@@ -37,7 +37,7 @@ pipeline {
                     withCredentials([file(credentialsId: 'allow-gcp-resource-create-and-manage', variable: 'GOOGLE_CREDENTIALS')]) {
                         sh """
                             export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_CREDENTIALS}
-                            terraform init -backend-config="project=${GOOGLE_PROJECT_ID}"
+                            terraform init"
                         """
                     }
                 }
@@ -50,7 +50,7 @@ pipeline {
                     withCredentials([file(credentialsId: 'allow-gcp-resource-create-and-manage', variable: 'GOOGLE_CREDENTIALS')]) {
                         sh """
                             export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_CREDENTIALS}
-                            terraform plan -out=tfplan
+                            terraform plan
                         """
                     }
                 }
