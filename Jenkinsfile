@@ -10,7 +10,7 @@ pipeline {
             spec:
               containers:
                 - name: terraform
-                  image: hashicorp/terraform:1.9.5
+                  image: hashicorp/terraform
                   tty: true
             """
         }
