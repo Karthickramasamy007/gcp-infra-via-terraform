@@ -10,7 +10,7 @@ pipeline {
             spec:
               containers:
               - name: terraform
-                image: hashicorp/terraform:latest
+                image: europe-west1-docker.pkg.dev/dev-demo-proj-1-id/my-artifact-repo/terraform:1.9.5
                 command: [ "cat" ]
                 tty: true
             """
