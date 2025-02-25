@@ -10,3 +10,15 @@ gcp-infra-via-terraform/
 ├── outputs.tf                 # Outputs for the infrastructure
 ├── variables.tf               # Input variables for configuration
 └── terraform.tfvars           # Variables values (can be environment-specific)
+
+
+# Future improvements
+1. use feature brachm PR approval to main
+1. add brach based pipeline execuiotion in jenkins
+2. Add jenkins groovy script as shared library for validation may be.
+2. add code validation and naming convetion check for one argument for demo
+3. add lint, security scans testing etc.
+4. create different statefile folder in gcp for each env
+5. Add manual appoval for produiton release
+6. how you can roll back chnages ?
+7. remove the pod yaml from code and put in a file
