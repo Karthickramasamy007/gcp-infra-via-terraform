@@ -1,5 +1,5 @@
 pipeline {
-      agent {
+    agent {
         kubernetes {
             yaml """
             apiVersion: v1
@@ -8,6 +8,8 @@ pipeline {
               labels:
                 app: jenkins-agent
             spec:
+              imagePullSecrets:
+              - name: gcr-json-key  // Use the secret for pulling images from Artifact Registry
               containers:
               - name: terraform
                 image: europe-west1-docker.pkg.dev/dev-demo-proj-1-id/my-artifact-repo/terraform:1.9.5
@@ -18,17 +20,13 @@ pipeline {
     }
 
     environment {
-        // Define GCP credentials (make sure these are stored securely, e.g., in Jenkins credentials store)
-        GOOGLE_CREDENTIALS = credentials('allow-gcp-resource-create-and-manage') // The ID of the stored secret in Jenkins
+        GOOGLE_CREDENTIALS = credentials('allow-gcp-resource-create-and-manage')  // This assumes you have the credentials stored securely in Jenkins
         GOOGLE_PROJECT_ID = 'dev-demo-proj-1-id'
-        //GOOGLE_REGION = 'us-central1' // Change to your desired region
-        //GOOGLE_ZONE = 'us-central1-a' // Change to your desired zone
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                // Checkout your Terraform code from the Git repository
                 git url: 'https://github.com/Karthickramasamy007/gcp-infra-via-terraform', branch: 'main'
             }
         }
@@ -36,11 +34,10 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 script {
-                    // Set up the environment for GCP authentication
                     withCredentials([file(credentialsId: 'allow-gcp-resource-create-and-manage', variable: 'GOOGLE_CREDENTIALS')]) {
                         sh """
                             export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_CREDENTIALS}
-                            terraform init
+                            terraform init -backend-config="project=${GOOGLE_PROJECT_ID}"
                         """
                     }
                 }
@@ -64,7 +61,6 @@ pipeline {
             steps {
                 script {
                     withCredentials([file(credentialsId: 'allow-gcp-resource-create-and-manage', variable: 'GOOGLE_CREDENTIALS')]) {
-                        // Run terraform apply only when plan is successful
                         input message: 'Approve Terraform Apply?', ok: 'Apply'
                         sh """
                             export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_CREDENTIALS}
@@ -79,7 +75,7 @@ pipeline {
             steps {
                 script {
                     sh 'terraform workspace select default || terraform workspace new default'
-                    sh 'terraform destroy -auto-approve'  // Optional, for teardown purposes
+                    sh 'terraform destroy -auto-approve'
                 }
             }
         }
