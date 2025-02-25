@@ -20,10 +20,11 @@ pipeline {
                         name: allow-gcp-resource-create-and-manage
                         key: credentials.json  # Name of the key in the secret
                     - name: GOOGLE_APPLICATION_CREDENTIALS
-                    value: /dev/null  # We won't need to point to a file, but this will silence any prompts asking for the credentials file
+                    value: /dev/null  # Silences any prompts asking for the credentials file
             """
         }
     }
+
 
     environment {
         GOOGLE_CREDENTIALS = credentials('allow-gcp-resource-create-and-manage')  // This assumes you have the credentials stored securely in Jenkins
