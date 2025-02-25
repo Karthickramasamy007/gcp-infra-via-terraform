@@ -32,28 +32,10 @@ pipeline {
                 steps {
                     container('terraform') {
                     sh 'terraform --version' // Check Python version inside the container
+                    sh 'terraform init'
+                    sh 'terraform plan' 
+                    sh 'terraform apply' 
                     }
-            }
-        }
-
-        stage('Terraform Init') {
-            steps {
-                script {
-                   
-                        sh """
-                            terraform init
-                        """
-                }
-            }
-        }
-
-        stage('Terraform Plan') {
-            steps {
-                script {
-                        sh """
-                            terraform plan
-                        """
-                }
             }
         }
 
