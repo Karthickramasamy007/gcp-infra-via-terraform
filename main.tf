@@ -47,7 +47,7 @@ output "subnet_id" {
 # GCP bucket as Terraform state backend
 terraform {
   backend "gcs" {
-    bucket  = "tf-state-karthick"
+    bucket  = "tf-state-karthick-1"
     prefix  = "terraform/env/state"
   }
 }
