@@ -10,7 +10,7 @@ pipeline {
             spec:
             //   imagePullSecrets:
             //   - name: gcr-json-key  // Use the secret for pulling images from Artifact Registry
-              containers:
+            //  containers:
               - name: terraform
                 image: hashicorp/terraform
                 command: [ "cat" ]
