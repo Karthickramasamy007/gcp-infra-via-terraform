@@ -11,7 +11,7 @@ pipeline {
               containers:
                 - name: terraform
                   image: hashicorp/terraform
-                  command: [ "sh", "-c", "terraform version && sleep 3600" ]
+                  command: [ "sh", "-c", "echo 'Checking Terraform version...' && terraform version && sleep 3600" ]
                   tty: true
             """
         }
