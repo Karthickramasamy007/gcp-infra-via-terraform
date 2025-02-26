@@ -11,6 +11,8 @@ gcp-infra-via-terraform/
 ├── variables.tf               # Input variables for configuration
 └── terraform.tfvars           # Variables values (can be environment-specific)
 
+# Lloyds Infra pipeline Architecture Diagram :
+    - See the .jpg file in this project folder
 
 # Future improvements
 1. use feature brachm PR approval to main
